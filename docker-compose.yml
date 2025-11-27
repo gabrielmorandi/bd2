@@ -1,0 +1,18 @@
+services:
+    kanban-api:
+        build:
+            context: ./kanban-api
+            dockerfile: Dockerfile
+        container_name: bd2-kanban-api
+        ports:
+            - '8787:8787'
+            - '4983:4983'
+        environment:
+            - NODE_ENV=development
+        networks:
+            - kanban-network
+        command: npm run dev
+
+networks:
+    kanban-network:
+        driver: bridge
