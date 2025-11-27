@@ -1,0 +1,1087 @@
+{
+  "info": {
+    "_postman_id": "ab0120a0-4c76-4b18-9f72-9bcc8fc3b54e",
+    "name": "BD2",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "48586749"
+  },
+  "item": [
+    {
+      "name": "Status",
+      "item": [
+        {
+          "name": "/",
+          "id": "981544fd-f8eb-4d77-a50d-5f499f86291c",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{url}}",
+              "host": [
+                "{{url}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "/v1",
+          "id": "92506ee8-c6f0-46d9-91e6-ba60067cd470",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/v1",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "v1"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "b6bd77d4-50d1-40ae-b4eb-0a631366aa7e"
+    },
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "/login",
+          "id": "1ed87686-017e-40ee-82ce-554d4adde3aa",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"email\": \"hugo@email.com\",\n    \"password\": \"123456\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{url}}/v1/auth/login",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "v1",
+                "auth",
+                "login"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "/logout",
+          "id": "e7b58f26-d324-44da-af89-8ddff4fe4ad3",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/v1/auth/logout",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "v1",
+                "auth",
+                "logout"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "/me",
+          "id": "911aee6a-4cfd-4c21-ad51-cea9cfacc7ef",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/v1/auth/me",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "v1",
+                "auth",
+                "me"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "2a458d37-db0c-4cea-a72a-d09240bf065e"
+    },
+    {
+      "name": "Users",
+      "item": [
+        {
+          "name": "Post",
+          "item": [
+            {
+              "name": "/ -> username",
+              "id": "48f7a528-b9c5-4656-9b3e-bfc54871874a",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"name\": \"username\",\n    \"email\": \"user@email.com\",\n    \"password_hash\": \"123456\",\n    \"avatar_url\": null\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{url}}/v1/users",
+                  "host": [
+                    "{{url}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "users"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "/ -> hugo",
+              "id": "65edec85-490e-4d87-bfd2-961127737706",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"name\": \"hugo\",\n    \"email\": \"hugo@email.com\",\n    \"password_hash\": \"123456\",\n    \"avatar_url\": null\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{url}}/v1/users",
+                  "host": [
+                    "{{url}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "users"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ],
+          "id": "69065d7b-0690-45c8-9dd7-1ee48c271840"
+        },
+        {
+          "name": "/:email",
+          "id": "14ef2376-b9eb-405c-9a2e-75a24a15e39b",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/v1/users/user@email.com",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "v1",
+                "users",
+                "user@email.com"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "481e885c-6610-4fe5-945f-582d63346e78"
+    },
+    {
+      "name": "Board",
+      "item": [
+        {
+          "name": "/",
+          "id": "c7d5065e-655f-410f-9e66-9a3858e74728",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"Project\",\n    \"owner_id\": \"019ac3db-0afb-719b-bba1-ca093635ec9e\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{url}}/v1/boards",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "v1",
+                "boards"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "/id/:id",
+          "id": "3cbfd232-a7fa-40b6-83fa-8d342d37cf55",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/v1/boards/id/019ac3db-0afb-719b-bba1-ca093635ec9e",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "v1",
+                "boards",
+                "id",
+                "019ac3db-0afb-719b-bba1-ca093635ec9e"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "/id/:id",
+          "id": "511b33c0-9286-4897-920f-8d294b5c80ac",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"BoardNameUpdated\",\n    \"owner_id\": \"019ab3e6-0449-75a9-a91c-f7672985598b\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{url}}/v1/boards/id/019ab491-6a98-70ad-8215-e772fdd02cd1",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "v1",
+                "boards",
+                "id",
+                "019ab491-6a98-70ad-8215-e772fdd02cd1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "/id/:id",
+          "id": "8f10b045-139f-4543-839c-743b97db251e",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"BoardNameUpdated\",\n    \"owner_id\": \"019ab3e6-0449-75a9-a91c-f7672985598b\"\n}"
+            },
+            "url": {
+              "raw": "{{url}}/v1/boards/id/019ab491-6a98-70ad-8215-e772fdd02cd1",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "v1",
+                "boards",
+                "id",
+                "019ab491-6a98-70ad-8215-e772fdd02cd1"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "1a329d8f-d95f-4474-836b-ed64460db2e4"
+    },
+    {
+      "name": "Column",
+      "item": [
+        {
+          "name": "Post",
+          "item": [
+            {
+              "name": "/ -> TODO",
+              "id": "26393f67-62cc-4e6b-a34f-9d1a67c54bc2",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"name\": \"TODO\",\n    \"board_id\": \"019ac3db-d367-70d8-9d5e-f0798d6c4d5c\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{url}}/v1/columns",
+                  "host": [
+                    "{{url}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "columns"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "/ -> DOING",
+              "id": "0cad9006-aa8c-46ca-87d3-9b2ec5f6e678",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"name\": \"DOING\",\n    \"board_id\": \"019ac3db-d367-70d8-9d5e-f0798d6c4d5c\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{url}}/v1/columns",
+                  "host": [
+                    "{{url}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "columns"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "/ -> DONE",
+              "id": "8f435ed9-7c16-4464-af1e-eb6fb563fbf2",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"name\": \"DONE\",\n    \"board_id\": \"019ac3db-d367-70d8-9d5e-f0798d6c4d5c\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{url}}/v1/columns",
+                  "host": [
+                    "{{url}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "columns"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ],
+          "id": "db8894a0-4348-4da0-94c7-f36a82a796e9"
+        },
+        {
+          "name": "/id/:id",
+          "id": "d33206ec-3b2c-4d45-b28a-5bab38e42f4a",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/v1/columns/id/019ac2a6-c3e4-73e5-8196-1f7e97eea024",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "v1",
+                "columns",
+                "id",
+                "019ac2a6-c3e4-73e5-8196-1f7e97eea024"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "/id/:id",
+          "id": "9debd71a-9fbf-4d08-b663-937ffd36a402",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"TODO Up\",\n    \"board_id\": \"019ab49f-43cd-77b0-b837-d6acaeb1a1e6\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{url}}/v1/columns/id/019ab4a8-beec-73e0-98e9-1766ffd3dccd",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "v1",
+                "columns",
+                "id",
+                "019ab4a8-beec-73e0-98e9-1766ffd3dccd"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "/id/:id",
+          "id": "b830f11d-8493-4c6d-918e-d17561a22f8d",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/v1/columns/id/019ac2a7-7951-724b-a8a6-2eb7029e9c5a",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "v1",
+                "columns",
+                "id",
+                "019ac2a7-7951-724b-a8a6-2eb7029e9c5a"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "97c6d62e-84b4-4737-a815-3c01e498de63"
+    },
+    {
+      "name": "Task",
+      "item": [
+        {
+          "name": "Post",
+          "item": [
+            {
+              "name": "/ -> Research competitor ...",
+              "id": "6ff0816c-7715-4863-89a0-a9101bb76823",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"title\": \"Research competitor pricing and business models\",\n    \"description\": \"desc\",\n    \"column_id\": \"019ac3e5-64b7-711e-8dd6-ad49ed4b9bca\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{url}}/v1/tasks",
+                  "host": [
+                    "{{url}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "tasks"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "/ -> Create template ...",
+              "id": "90c4ccd6-7a42-4a2e-9f7a-ddff0f7a8fde",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"title\": \"Create template structures\",\n    \"description\": \"desc\",\n    \"column_id\": \"019ac3e5-64b7-711e-8dd6-ad49ed4b9bca\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{url}}/v1/tasks",
+                  "host": [
+                    "{{url}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "tasks"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "/ -> QA and ...",
+              "id": "c43d29d2-3c33-44cc-874f-b4b5b32ec897",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"title\": \"QA and test all major user journeys\",\n    \"description\": \"desc\",\n    \"column_id\": \"019ac3e5-64b7-711e-8dd6-ad49ed4b9bca\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{url}}/v1/tasks",
+                  "host": [
+                    "{{url}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "tasks"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ],
+          "id": "b4f8b329-0b81-4ab5-9dd4-0e1ee01af0c3"
+        },
+        {
+          "name": "/id/:id",
+          "id": "9f403eef-6631-441f-9993-80e74e3a2079",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{url}}/v1/tasks/id/019ac2a8-1a39-7046-84b6-0f3ebd18f22b",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "v1",
+                "tasks",
+                "id",
+                "019ac2a8-1a39-7046-84b6-0f3ebd18f22b"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "/id/:id",
+          "id": "d915df98-8a0e-4965-95f6-715de6e401de",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"title\": \"Create template structures PUT\",\n    \"description\": \"desc\",\n    \"column_id\": \"019ab4aa-1540-7744-9612-01e5a19a5238\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{url}}/v1/tasks/id/019ab4b5-0db7-70a7-b658-e2404c3928e1",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "v1",
+                "tasks",
+                "id",
+                "019ab4b5-0db7-70a7-b658-e2404c3928e1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "/id/:id",
+          "id": "89e8bba0-2020-4d24-bf28-5472aebc2339",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/v1/tasks/id/019ab4d1-e3ca-71fb-b3cd-3427523d1ab3",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "v1",
+                "tasks",
+                "id",
+                "019ab4d1-e3ca-71fb-b3cd-3427523d1ab3"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "e6d09237-e7ff-435a-a5e2-84779c6cab38"
+    },
+    {
+      "name": "Subtask",
+      "item": [
+        {
+          "name": "Post",
+          "item": [
+            {
+              "name": "/ -> Research competitor ...",
+              "id": "0f98f228-be43-4cc6-8b80-0e8678c0cf8d",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"title\": \"Research competitor pricing and business models\",\n    \"task_id\": \"019ac3e5-e62d-700a-b808-1de562b2bce8\",\n    \"is_completed\": true,\n    \"position\": 0\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{url}}/v1/subtasks",
+                  "host": [
+                    "{{url}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "subtasks"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "/ -> Outline a ...",
+              "id": "547c6fe2-c3ee-40aa-b67e-50511793b73a",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"title\": \"Outline a business model that works for our solution\",\n    \"task_id\": \"019ac3e5-e62d-700a-b808-1de562b2bce8\",\n    \"is_completed\": true,\n    \"position\": 1\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{url}}/v1/subtasks",
+                  "host": [
+                    "{{url}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "subtasks"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ],
+          "id": "924b14b5-a6bd-4e6c-b2c6-606226a314bc"
+        },
+        {
+          "name": "/id/:id",
+          "id": "ac8b7381-6578-466c-a00a-bb6af29e2b56",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/v1/subtasks/id/019ac2a8-605b-71cb-b8e1-08e4a76823ad",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "v1",
+                "subtasks",
+                "id",
+                "019ac2a8-605b-71cb-b8e1-08e4a76823ad"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "/id/:id",
+          "id": "aceb36bd-549d-401e-a189-86d103abdf17",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"title\": \"Research competitor pricing and business models PUT\",\n    \"task_id\": \"019ab4b5-946f-735e-8807-60376aa4be45\",\n    \"is_completed\": false,\n    \"position\": 0\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{url}}/v1/subtasks/id/019ab4c1-8b5d-7272-b033-88f4e1eb3030",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "v1",
+                "subtasks",
+                "id",
+                "019ab4c1-8b5d-7272-b033-88f4e1eb3030"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "/id/:id",
+          "id": "61bd8029-0154-49cd-8f54-534d8bb43ab0",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/v1/subtasks/id/019ab4c1-8b5d-7272-b033-88f4e1eb3030",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "v1",
+                "subtasks",
+                "id",
+                "019ab4c1-8b5d-7272-b033-88f4e1eb3030"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "9b6f9acf-cbdb-4d13-a485-4ce521475836"
+    },
+    {
+      "name": "Assignees",
+      "item": [
+        {
+          "name": "Post",
+          "item": [
+            {
+              "name": "/ -> Create template ...",
+              "id": "e44a9774-46d5-482e-a91b-c8d785b7fd43",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"task_id\": \"019ac2a8-605b-71cb-b8e1-08e4a76823ad\",\n    \"user_id\": \"019ac2a6-728e-70ab-a881-45a75882c4d3\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{url}}/v1/tasks/assignees",
+                  "host": [
+                    "{{url}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "tasks",
+                    "assignees"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "/ -> Research competitor ...",
+              "id": "6eb6e049-c88c-408b-88e4-73f58f55c128",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"task_id\": \"019ac3e5-e62d-700a-b808-1de562b2bce8\",\n    \"user_id\": \"019ac3db-0afb-719b-bba1-ca093635ec9e\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{url}}/v1/tasks/assignees",
+                  "host": [
+                    "{{url}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "tasks",
+                    "assignees"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ],
+          "id": "23f91b20-3bd4-484d-af6c-69ad915c7ef3"
+        },
+        {
+          "name": "/id/:id",
+          "id": "6251fca2-1e96-4fd4-874c-d6ff14d8a80e",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/v1/tasks/assignees/id/019ac3e5-e62d-700a-b808-1de562b2bce8",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "v1",
+                "tasks",
+                "assignees",
+                "id",
+                "019ac3e5-e62d-700a-b808-1de562b2bce8"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "/id/:id/user/:userId",
+          "id": "b2e09ed4-7c3a-4484-944d-b791ab0d370f",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/v1/tasks/assignees/id/019ab4d2-570d-76c4-b9af-e5ca21b0fc9f/user/019ab3e6-0449-75a9-a91c-f7672985598b",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "v1",
+                "tasks",
+                "assignees",
+                "id",
+                "019ab4d2-570d-76c4-b9af-e5ca21b0fc9f",
+                "user",
+                "019ab3e6-0449-75a9-a91c-f7672985598b"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "c885d0df-92aa-4d93-a0fb-621f6fd8cc28"
+    },
+    {
+      "name": "BoardMember",
+      "item": [
+        {
+          "name": "Post",
+          "item": [
+            {
+              "name": "/ -> BoardName",
+              "id": "77e2e9d8-91a3-495e-935b-0ca398e0f7a3",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"board_id\": \"019ac3db-d367-70d8-9d5e-f0798d6c4d5c\",\n    \"user_id\": \"019ac3db-0afb-719b-bba1-ca093635ec9e\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{url}}/v1/boards/members",
+                  "host": [
+                    "{{url}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "boards",
+                    "members"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "/ -> Project",
+              "id": "5601406f-a0d0-4511-96fb-ac450f7d618b",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"board_id\": \"019ac3db-d367-70d8-9d5e-f0798d6c4d5c\",\n    \"user_id\": \"019ac3dd-1da1-738f-b96f-742037767c29\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{url}}/v1/boards/members",
+                  "host": [
+                    "{{url}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "boards",
+                    "members"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ],
+          "id": "6b66e06d-9c0e-469e-8de2-0f1812be2d15"
+        },
+        {
+          "name": "/id/:id",
+          "id": "0e462c76-7911-4824-9af3-eb5ef447b691",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/v1/boards/members/id/019ac3db-d367-70d8-9d5e-f0798d6c4d5c",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "v1",
+                "boards",
+                "members",
+                "id",
+                "019ac3db-d367-70d8-9d5e-f0798d6c4d5c"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "/id/:id/user/:userId",
+          "id": "77bb3f31-e4c7-479d-b1dd-1cd19cbada5e",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/v1/boards/members/id/019ac3db-d367-70d8-9d5e-f0798d6c4d5c/user/019ac3db-0afb-719b-bba1-ca093635ec9e",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "v1",
+                "boards",
+                "members",
+                "id",
+                "019ac3db-d367-70d8-9d5e-f0798d6c4d5c",
+                "user",
+                "019ac3db-0afb-719b-bba1-ca093635ec9e"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "537f615f-dc97-4a30-98fa-135ad1a7258d"
+    },
+    {
+      "name": "Complex",
+      "item": [
+        {
+          "name": "/board/id/:id",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "222fdf68-768e-4ad6-8566-f496071fee1e",
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "id": "fe7cc474-2648-4286-a2ad-c21d7b3a7bde",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/v1/complex/board/id/019ac3db-d367-70d8-9d5e-f0798d6c4d5c",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "v1",
+                "complex",
+                "board",
+                "id",
+                "019ac3db-d367-70d8-9d5e-f0798d6c4d5c"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "fdeb9519-d0f9-44bb-8954-3e01dc2e19e9"
+    }
+  ]
+}
