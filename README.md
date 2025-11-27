@@ -12,6 +12,4 @@ Suba o container:
 docker compose up
 ```
 
-Importe a collection `./postman_colection.json` para postman.
-
-
+Importe a collection `./kanban-api/postman/BD2.postman_collection.json` para postman.
