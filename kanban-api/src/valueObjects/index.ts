@@ -6,3 +6,4 @@ export * from './column';
 export * from './task';
 export * from './subtask';
 export * from './taskAssignee';
+export * from './boardComplex';

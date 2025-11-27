@@ -1,8 +1,9 @@
 // drizzle
 import { sqliteTable, integer, text, primaryKey } from 'drizzle-orm/sqlite-core';
-import { sql } from 'drizzle-orm';
+import { relations, sql } from 'drizzle-orm';
 import { v7 as uuidv7 } from 'uuid';
 
+// schema
 export const users = sqliteTable('users', {
     id: text()
         .primaryKey()
@@ -103,4 +104,66 @@ export const boardMembers = sqliteTable(
     (t) => ({
         pk: primaryKey({ columns: [t.board_id, t.user_id] })
     })
-);
+)
+
+// relations
+export const usersRelations = relations(users, ({ many }) => ({
+    ownedBoards: many(boards),
+    taskAssignees: many(taskAssignees),
+    boardMembers: many(boardMembers)
+}));
+
+export const boardsRelations = relations(boards, ({ one, many }) => ({
+    owner: one(users, {
+        fields: [boards.owner_id],
+        references: [users.id]
+    }),
+    columns: many(columns),
+    boardMembers: many(boardMembers)
+}));
+
+export const columnsRelations = relations(columns, ({ one, many }) => ({
+    board: one(boards, {
+        fields: [columns.board_id],
+        references: [boards.id]
+    }),
+    tasks: many(tasks)
+}));
+
+export const tasksRelations = relations(tasks, ({ one, many }) => ({
+    column: one(columns, {
+        fields: [tasks.column_id],
+        references: [columns.id]
+    }),
+    subtasks: many(subtasks),
+    taskAssignees: many(taskAssignees)
+}));
+
+export const subtasksRelations = relations(subtasks, ({ one }) => ({
+    task: one(tasks, {
+        fields: [subtasks.task_id],
+        references: [tasks.id]
+    })
+}));
+
+export const taskAssigneesRelations = relations(taskAssignees, ({ one }) => ({
+    task: one(tasks, {
+        fields: [taskAssignees.task_id],
+        references: [tasks.id]
+    }),
+    user: one(users, {
+        fields: [taskAssignees.user_id],
+        references: [users.id]
+    })
+}));
+
+export const boardMembersRelations = relations(boardMembers, ({ one }) => ({
+    board: one(boards, {
+        fields: [boardMembers.board_id],
+        references: [boards.id]
+    }),
+    user: one(users, {
+        fields: [boardMembers.user_id],
+        references: [users.id]
+    })
+}));

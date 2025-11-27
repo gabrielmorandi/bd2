@@ -20,6 +20,7 @@ import { TaskInbound, TaskOutbound, TaskValueObject } from '../valueObjects/task
 import { SubtaskInbound, SubtaskOutbound, SubtaskValueObject } from '../valueObjects/subtask';
 import { TaskAssigneeInbound, TaskAssigneeOutbound, TaskAssigneeValueObject } from '../valueObjects/taskAssignee';
 import { BoardMemberInbound, BoardMemberOutbound, BoardMemberValueObject } from '../valueObjects/boardMember';
+import { BoardComplexOutbound, BoardComplexValueObject } from '../valueObjects/boardComplex';
 
 export class DbService {
     private db: BetterSQLite3Database<typeof schema>;
@@ -71,12 +72,22 @@ export class DbService {
         return BoardValueObject.createOutbound(queryBoard);
     }
 
-    async getAllBoardsByOwner(ownerId: string): Promise<BoardOutbound[]> {
-        const boards = await this.db.query.boards.findMany({
-            where: (boards, { eq }) => eq(boards.owner_id, ownerId)
+    async getAllBoardsByUserId(userId: string): Promise<BoardOutbound[]> {
+        const ownedBoards = await this.db.query.boards.findMany({
+            where: (boards, { eq }) => eq(boards.owner_id, userId)
+        });
+        const memberBoards = await this.db.query.boardMembers.findMany({
+            where: (boardMembers, { eq }) => eq(boardMembers.user_id, userId),
+            with: {
+                board: true
+            }
         });
 
-        return BoardValueObject.createOutboundArray(boards);
+        const memberBoardsData = memberBoards.map((bm: any) => bm.board);
+        const allBoards = [...ownedBoards, ...memberBoardsData];
+        const uniqueBoards = Array.from(new Map(allBoards.map((board) => [board.id, board])).values());
+
+        return BoardValueObject.createOutboundArray(uniqueBoards);
     }
 
     async updateBoardByBoardId(id: string, data: BoardInbound): Promise<BoardOutbound | null> {
@@ -293,5 +304,68 @@ export class DbService {
         if (!result) return null;
 
         return BoardMemberValueObject.createOutbound(result);
+    }
+
+    // complex
+    async getBoardComplexById(id: string): Promise<BoardComplexOutbound | null> {
+        const board = await this.db.query.boards.findFirst({
+            where: (boards, { eq }) => eq(boards.id, id),
+            with: {
+                owner: true,
+                columns: {
+                    with: {
+                        tasks: {
+                            with: {
+                                subtasks: true,
+                                taskAssignees: {
+                                    with: {
+                                        user: true
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                boardMembers: {
+                    with: {
+                        user: true
+                    }
+                }
+            }
+        });
+
+        if (!board) return null;
+
+        const boardData = board as any;
+
+        const boardComplex = {
+            id: boardData.id,
+            name: boardData.name,
+            owner_id: boardData.owner_id,
+            created_at: boardData.created_at,
+            updated_at: boardData.updated_at,
+            owner: boardData.owner,
+            columns: boardData.columns.map((column: any) => ({
+                id: column.id,
+                name: column.name,
+                board_id: column.board_id,
+                position: column.position,
+                created_at: column.created_at,
+                updated_at: column.updated_at,
+                tasks: column.tasks.map((task: any) => ({
+                    id: task.id,
+                    title: task.title,
+                    description: task.description,
+                    column_id: task.column_id,
+                    created_at: task.created_at,
+                    updated_at: task.updated_at,
+                    assignees: task.taskAssignees.map((ta: any) => ta.user),
+                    subtasks: task.subtasks
+                }))
+            })),
+            members: boardData.boardMembers.map((bm: any) => bm.user)
+        };
+
+        return BoardComplexValueObject.createOutbound(boardComplex);
     }
 }

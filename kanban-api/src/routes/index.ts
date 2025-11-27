@@ -9,6 +9,7 @@ import { tasks } from './tasks';
 import { subtasks } from './subtasks';
 import { tasksAssignees } from './tasksAssignnes';
 import { boardsMembers } from './boardsMember';
+import { complex } from './complex';
 
 const router = new Hono();
 
@@ -20,5 +21,6 @@ router.route('/tasks', tasks);
 router.route('/subtasks', subtasks);
 router.route('/tasks/assignees', tasksAssignees);
 router.route('/boards/members', boardsMembers);
+router.route('/complex/', complex)
 
 export default router;

@@ -47,7 +47,7 @@ boards.get('/id/:id', validator('param', validateParamIsUuid('id')), authMiddlew
     try {
         const id = c.req.valid('param');
         const _db = new DbService();
-        const queriedBoards = await _db.getAllBoardsByOwner(id);
+        const queriedBoards = await _db.getAllBoardsByUserId(id);
 
         return c.json({
             success: true,
